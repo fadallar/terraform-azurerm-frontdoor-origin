@@ -87,6 +87,6 @@ variable "health_probe_request_type" {
   default     = "HEAD"
   validation {
     condition     = var.health_probe_request_type == "GET" || var.health_probe_request_type == "HEAD"
-    error_message = "Invalid variable: ${var.health_probe_request_typel}. Allowed values GET HEAD"
+    error_message = "Invalid variable: ${var.health_probe_request_type}. Allowed values GET HEAD"
   }
 }
