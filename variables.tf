@@ -104,7 +104,7 @@ variable "origin_list" {
   default = []
 
   #validation {
-  #  condition     = length(var.origin_list) > 0
+  #  condition     = can(empty(var.origin_list)) || length(var.origin_list) > 0
   #  error_message = "At least one origin must be defined."
   #
   #  foreach = var.origin_list
