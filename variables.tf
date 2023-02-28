@@ -90,3 +90,45 @@ variable "health_probe_request_type" {
     error_message = "Invalid variable: ${var.health_probe_request_type}. Allowed values GET HEAD"
   }
 }
+
+variable "origin_list" {
+  type = list(object({
+    name                           = string
+    host_name                      = string
+    enabled                        = bool
+    certificate_name_check_enabled = bool
+    origin_host_header             = string
+    priority                       = number
+    weight                         = number
+  }))
+  default = []
+
+  #validation {
+  #  condition     = length(var.origin_list) > 0
+  #  error_message = "At least one origin must be defined."
+  #
+  #  foreach = var.origin_list
+  #
+  #  # Validate the name property of each origin
+  #  # by checking if it starts with "my-origin-"
+  #  # and has a length between 1 and 20 characters.
+  #  rule {
+  #    condition     = can(regex("^my-origin-.{1,20}$", each.value.name))
+  #    error_message = "The origin name must start with 'my-origin-' and be between 1 and 20 characters long."
+  #  }
+  #
+  #  # Validate the host_name property of each origin
+  #  # by checking if it's a valid domain name.
+  #  rule {
+  #    condition     = can(regex("^[a-z0-9]+([\\-\\.]{1}[a-z0-9]+)*\\.[a-z]{2,}$", each.value.host_name))
+  #    error_message = "The origin host name must be a valid domain name."
+  #  }
+  #
+  #  # Validate the priority property of each origin
+  #  # by checking if it's between 1 and 1000.
+  #  rule {
+  #    condition     = each.value.priority >= 1 && each.value.priority <= 1000
+  #    error_message = "The origin priority must be between 1 and 1000."
+  #  }
+  #}
+}
