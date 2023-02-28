@@ -22,7 +22,7 @@ resource "azurerm_cdn_frontdoor_origin_group" "this" {
 resource "azurerm_cdn_frontdoor_origin" "this" {
   for_each                      = var.origin_list != null ? { for origin in var.origin_list : origin.name => origin } : {}
   name                          = each.value.name
-  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.example.id
+  cdn_frontdoor_origin_group_id = azurerm_cdn_frontdoor_origin_group.this.id
   enabled                       = each.value.enabled
 
   certificate_name_check_enabled = each.value.certificate_name_check_enabled
