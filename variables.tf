@@ -13,7 +13,7 @@ variable "restore_traffic_time_to_healed_or_new_endpoint_in_minutes" {
   type        = number
   default     = 10
   validation {
-    condition     = restore_traffic_time_to_healed_or_new_endpoint_in_minutes >= 0 && restore_traffic_time_to_healed_or_new_endpoint_in_minutes <= 50
+    condition     = var.restore_traffic_time_to_healed_or_new_endpoint_in_minutes >= 0 && var.restore_traffic_time_to_healed_or_new_endpoint_in_minutes <= 50
     error_message = "Invalid variable: ${var.restore_traffic_time_to_healed_or_new_endpoint_in_minutes}. Allowed range is 0-50."
   }
 }
@@ -30,7 +30,7 @@ variable "additional_latency_in_milliseconds" {
   type        = number
   default     = 50
   validation {
-    condition     = additional_latency_in_milliseconds > 0 && additional_latency_in_milliseconds < 1000
+    condition     = var.additional_latency_in_milliseconds > 0 && var.additional_latency_in_milliseconds < 1000
     error_message = "Invalid variable: ${var.additional_latency_in_milliseconds}. Allowed range is 0-1000."
   }
 }
@@ -40,7 +40,7 @@ variable "sample_size" {
   type        = number
   default     = 4
   validation {
-    condition     = sample_size > 0 && sample_size < 255
+    condition     = var.sample_size > 0 && var.sample_size < 255
     error_message = "Invalid variable: ${var.sample_size}. Allowed range is 0-255."
   }
 }
@@ -50,8 +50,8 @@ variable "successful_samples_required" {
   type        = number
   default     = 3
   validation {
-    condition     = sample_size > 0 && sample_size < 255
-    error_message = "Invalid variable: ${var.sample_size}. Allowed range is 0-255."
+    condition     = var.successful_samples_required > 0 && var.successful_samples_required < 255
+    error_message = "Invalid variable: ${var.successful_samples_required}. Allowed range is 0-255."
   }
 }
 
@@ -60,8 +60,8 @@ variable "health_probe_interval_in_seconds" {
   type        = number
   default     = 30
   validation {
-    condition     = health_probe_interval_in_seconds > 5 && health_probe_interval_in_seconds < 31536000
-    error_message = "Invalid variable: ${var.sample_size}. Allowed range is 5-31536000."
+    condition     = var.health_probe_interval_in_seconds > 5 && var.health_probe_interval_in_seconds < 31536000
+    error_message = "Invalid variable: ${var.health_probe_interval_in_seconds}. Allowed range is 5-31536000."
   }
 
 }
