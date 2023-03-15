@@ -5,5 +5,5 @@ output "origin_group_id" {
 
 output "origin_id_list" {
   description = "List of FrontDoor Origin Ids"
-  value = { for origin in azurerm_cdn_frontdoor_origin.this : origin.name => origin.id }
+  value       = { for origin in azurerm_cdn_frontdoor_origin.this : "origin" => tolist(origin.id) }
 }
